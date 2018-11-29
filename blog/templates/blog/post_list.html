@@ -4,10 +4,14 @@
     </head>
     <body>
         <div>
-            <h1><a href="/">Не ну вы поняли</a></h1>
+            <h1><a href="/">Яким иди делай полигон, pes</a></h1><br>
         </div>
-        <div>
-            <p>Место для ващей херни</p>
-        </div>
+        {% for post in posts %}
+            <div>
+                <h2><a href="">{{ post.title }}</a></h2>
+                <p>{{ post.text|linebreaksbr }}</p>
+                <p>Опубликовано: {{ post.published_date }}</p>
+            </div>
+        {% endfor %}
     </body>
 </html>
