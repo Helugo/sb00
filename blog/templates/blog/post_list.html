@@ -1,17 +1,15 @@
-<html>
-    <head>
-        <title>Jopa's blog suka blya</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">Яким иди делай полигон, pes</a></h1><br>
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+{% for post in posts %}
+    <div class="post">
+        <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+        <p>{{ post.text|linebreaksbr }}</p>
+        <div class="date">
+            {{ post.published_date }}
         </div>
-        {% for post in posts %}
-            <div>
-                <h2><a href="">{{ post.title }}</a></h2>
-                <p>{{ post.text|linebreaksbr }}</p>
-                <p>Опубликовано: {{ post.published_date }}</p>
-            </div>
-        {% endfor %}
-    </body>
-</html>
+    </div>
+{% endfor %}
+
+{% endblock %}
