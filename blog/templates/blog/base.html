@@ -1,27 +1,60 @@
+<!DOCTYPE html>
 {% load static %}
+{% load bootstrap3 %}
 
 <html>
-    <head>
-        <title>Polygon Team's blog</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-    </head>
-    <body>
-        <div class="page-header">
-            <h1><a href="/">name</a>
-              {% if user.is_authenticated %}
-              <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"</span></a>
-              {% endif %}
-            </h1>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    <title>Polygon Team's blog</title>
+  </head>
+
+  <body>
+    <!--Начало::Бар-->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+
+        <!--Кнопка для мобил-->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"></button>
+          <a class="navbar-brand" href="/">Polygon Team's blog</a>
         </div>
-        <div class="content container">
-            <div class="row">
-                <div class="col-md-8">
-                    {% block content %}
-                    {% endblock %}
-                </div>
-            </div>
+
+        <!--Элементы-->
+        <div id="navbar" class="navbar-collapse collapse">
+          <!--Начало::Ниже добавляем кнопочки на бар -->
+          <ul class="nav navbar-nav">
+            <li><a href="/">coming soon</a></li>
+          </ul>
+          <!--Конец-->
+
+          <!--Для будущей аунтефикации, приветствия, добавления-->
+          <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+              <li><a>А, {{ user.username }}, это ты? Проходи!</a></li>
+              <li><a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"</span></a></li>
+            {% endif %}
+          </ul>
         </div>
+
+      </div>
+    </nav>
+    <!--Конец::Бар-->
+
+    <div class="content container">
+      <div class="row">
+        <div class="col-md-6">
+          {% block content %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+
     </body>
 </html>
